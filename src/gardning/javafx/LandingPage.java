@@ -2,6 +2,7 @@
  * 
  */
 package gardning.javafx;
+import gardening.plants.PlantList;
 import gardning.heatingsystem.GettingNumberOfHeaters;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -31,7 +32,8 @@ int fieldnumber,heatercount,sprinkercount,copyfieldnumber;
 		if (fieldnumber < 17 && fieldnumber > 0) {
 			CreatingFieldLayout.create(fieldnumber);
 		}
-
+		
+       
 		// setting heater and sprinkler count
 		GettingNumberOfHeaters heaterscount = new GettingNumberOfHeaters();
 		heatercount = heaterscount.numberofheaters(fieldnumber);

@@ -16,7 +16,7 @@ public static void setCooleron(boolean b) {
 	coolerStatus=b;
 }
 public static void setCoolerOff(boolean b){
-	coolerStatus = !b;
+	coolerStatus = b;
 //	System.out.println(coolerStatus);
 }
 	
