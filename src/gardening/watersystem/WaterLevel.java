@@ -1,6 +1,4 @@
-package gardening.logic;
-
-import gardening.watersystem.Sprinkler;
+package gardening.watersystem;
 
 public class WaterLevel {
 static double currentwaterlevel,minWaterLevels;

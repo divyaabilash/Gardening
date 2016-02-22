@@ -1,7 +1,7 @@
 package gardening.plants;
 
-import gardening.logic.Temperature;
-import gardening.logic.WaterLevel;
+import gardening.watersystem.WaterLevel;
+import gardning.heatingsystem.Temperature;
 
 public class Rose  extends FlowerPlants implements Plant{
 

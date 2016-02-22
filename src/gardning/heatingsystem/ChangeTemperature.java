@@ -1,9 +1,7 @@
-package gardening.logic;
+package gardning.heatingsystem;
 
-import gardening.cooler.CoolerOn;
 import gardening.general.Decrementer;
 import gardening.general.Incrementer;
-import gardning.heatingsystem.Heater;
 
 public class ChangeTemperature {
 	public void changetemp(boolean heater, boolean cooler, double currenttemp, double mintemp, double maxtemp) {

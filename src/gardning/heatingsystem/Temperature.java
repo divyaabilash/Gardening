@@ -1,7 +1,4 @@
-package gardening.logic;
-
-import gardening.cooler.CoolerOn;
-import gardning.heatingsystem.Heater;
+package gardning.heatingsystem;
 
 //getting temperature and setting min amd max temperature
 public class Temperature {

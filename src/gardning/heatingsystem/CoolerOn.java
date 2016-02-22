@@ -1,4 +1,4 @@
-package gardening.cooler;
+package gardning.heatingsystem;
 
 public class CoolerOn {
 	static boolean coolerStatus;

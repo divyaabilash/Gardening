@@ -1,7 +1,6 @@
-package gardening.logic;
+package gardening.watersystem;
 
 import gardening.general.Incrementer;
-import gardening.watersystem.Sprinkler;
 
 public class ChangeWaterLevel {
 double newWaterLevel;
