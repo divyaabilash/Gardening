@@ -1,4 +1,4 @@
-package gardening.getseetter;
+package gardening.logic;
 
 import gardening.cooler.CoolerOn;
 import gardning.heatingsystem.Heater;
@@ -9,8 +9,9 @@ static	double currenttemperature =0;
 static double minTemperature, maxTemperature;
 boolean cooler,heater;
 	
-	public static void getTemperature(){
+	public static double getTemperature(){
 		currenttemperature =65;//value should come form sensor
+		return currenttemperature;
 	}
 
 	public static void perferredTemperature(double mintemp, double maxtemp) {

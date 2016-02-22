@@ -1,18 +1,21 @@
 package gardening.plants;
 
-import gardening.getseetter.Temperature;
+import gardening.logic.Temperature;
+import gardening.logic.WaterLevel;
 
 public class Rose  extends FlowerPlants implements Plant{
 
 	public static void main(String[] args) {
 		Rose rose = new Rose();
-		rose.temperature(23, 30);
+		rose.temperature(23, 30); //This one is for Checking the temperature function.
+		rose.watering(50);
 	}
 	
 	@Override
-	public void watering() {
+	public void watering(double minWaterLevel) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("inside Rose Water Method");
+		WaterLevel.PerferredWaterLevel(minWaterLevel);
 	}
 
 	@Override
@@ -51,6 +54,12 @@ public class Rose  extends FlowerPlants implements Plant{
 
 	@Override
 	public void temperature() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void watering() {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,4 +1,4 @@
-package gardening.getseetter;
+package gardening.logic;
 
 import gardening.cooler.CoolerOn;
 import gardening.general.Decrementer;
