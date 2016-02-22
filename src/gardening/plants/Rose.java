@@ -20,7 +20,7 @@ public class Rose  extends FlowerPlants implements Plant{
 		// TODO Auto-generated method stub
 		double mintempRose = mintemp;
 		double maxtempRose = maxtemp;
-		System.out.println("inside temperature method");
+		System.out.println("inside Rose temperature method");
 		Temperature.perferredTemperature(mintempRose, maxtempRose);
 		
 	}

@@ -5,12 +5,12 @@ import gardning.heatingsystem.Heater;
 
 //getting temperature and setting min amd max temperature
 public class Temperature {
-	double currenttemperature;
+static	double currenttemperature =0;
 static double minTemperature, maxTemperature;
 boolean cooler,heater;
 	
-	public void getTemperature(){
-		currenttemperature =0;//value should come form sensor
+	public static void getTemperature(){
+		currenttemperature =65;//value should come form sensor
 	}
 
 	public static void perferredTemperature(double mintemp, double maxtemp) {
@@ -25,6 +25,7 @@ boolean cooler,heater;
 		}
 	}
 	public void checktemperature(){
+		System.out.println("currenttemperature"+currenttemperature);
 		if(currenttemperature >maxTemperature){
 			System.out.println("setting on cooler");
 			CoolerOn.setCooleron(true);
