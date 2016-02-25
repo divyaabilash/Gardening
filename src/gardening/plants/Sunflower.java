@@ -1,5 +1,6 @@
 package gardening.plants;
 
+
 import gardening.fertility.Fertilizer;
 
 //import org.apache.log4j.Logger;
@@ -8,7 +9,7 @@ import gardening.watersystem.WaterLevel;
 import gardning.heatingsystem.Temperature;
 //import gardning.javafx.CreatingFieldLayout;
 
-public class Rose  extends FlowerPlants implements Plant,Runnable{
+public class Sunflower  extends FlowerPlants implements Plant,Runnable{
 	
 	WaterLevel water = new WaterLevel();
 	Temperature temp = new Temperature();
@@ -81,3 +82,4 @@ public class Rose  extends FlowerPlants implements Plant,Runnable{
 	
 	
 }
+

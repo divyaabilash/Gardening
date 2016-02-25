@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Decrementer {
 		
-public static double decrease(double currentvalue,double tochangevalue){
+public double decrease(double currentvalue,double tochangevalue){
 	double tochange;
 	for(tochange=currentvalue;tochange>tochangevalue;tochange--){
 		try {

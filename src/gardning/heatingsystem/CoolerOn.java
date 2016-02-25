@@ -1,23 +1,22 @@
 package gardning.heatingsystem;
 
 public class CoolerOn {
-	static boolean coolerStatus;
+	 boolean coolerStatus;
 	
 //	public static void main(String[] args) {
 //		new CoolerOn();
 //		CoolerOn.setCoolerOff(true);
 //		System.out.println(coolerStatus);
 //	}
-public static boolean getCoolerStatus(){
+public  boolean getCoolerStatus(){
 			return coolerStatus;
 }
-public static void setCooleron(boolean b) {
-	// TODO Auto-generated method stub
+public  void setCooleron(boolean b) {
 	coolerStatus=b;
+	
 }
-public static void setCoolerOff(boolean b){
+public  void setCoolerOff(boolean b){
 	coolerStatus = b;
-//	System.out.println(coolerStatus);
 }
 	
 }

@@ -12,7 +12,7 @@ public class Incrementer {
 //	}
 
 	//eg: currentvalue is current temperature and tochangevalue is the min temperature value
-	public static double increase(double currentvalue,double tochangevalue){
+	public double increase(double currentvalue,double tochangevalue){
 		double tochange;
 		for(tochange=currentvalue;tochange<tochangevalue;tochange++){
 			try {

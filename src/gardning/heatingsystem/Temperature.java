@@ -1,44 +1,87 @@
 package gardning.heatingsystem;
 
-//getting temperature and setting min amd max temperature
+import java.util.ArrayList;
+
+import gardening.manual.ManualOverride;
+import gardening.sensors.TemperatureSensor;
+import gardning.javafx.CreatingFieldLayout;
+
 public class Temperature {
-static	double currenttemperature =0;
-static double minTemperature, maxTemperature;
-boolean cooler,heater;
 	
-	public static double getTemperature(){
-		currenttemperature =65;//value should come form sensor
-		return currenttemperature;
+  double sensorTemp;
+ double minTemperature, maxTemperature;
+boolean cooler,heater;
+ double manualTemp;
+ double currentTemp;
+ boolean check=true;
+
+ CoolerOn cool = new CoolerOn();
+ Heater hot= new Heater();
+CreatingFieldLayout cfl =new CreatingFieldLayout();	
+	
+	public  double getTemperature(){
+			
+		TemperatureSensor tempSensor=new TemperatureSensor();
+		ArrayList<Integer> intlist = new ArrayList<Integer>();
+		
+		intlist=tempSensor.sensor();
+
+		check= cfl.manualChecker();
+		ManualOverride manual=new ManualOverride();
+		manualTemp=manual.getmanualtemparetureOverideValue();
+		
+		System.out.println("Inside get temperature");
+		if(!check){
+			System.out.println("Inside check option");
+			System.out.println(intlist.size());
+				
+			for(int i=0; i<intlist.size(); i++){
+				//sensorTemp=intlist.get(i); 
+				System.out.println("Sensor is working");
+			
+				currentTemp=intlist.get(i);
+				System.out.println("inside sensor loop" + i);			
+			//System.out.println("Sensore working");
+			}
+			
+		}else{
+			currentTemp=manualTemp;
+				System.out.println("Manual TEmperature" + currentTemp );					
+		}
+		return currentTemp;
+		
 	}
 
-	public static void perferredTemperature(double mintemp, double maxtemp) {
+	public void perferredTemperature(double mintemp, double maxtemp) {
 		// TODO Auto-generated method stub
 		System.out.println("Preferredtemperature method");
 		minTemperature = mintemp;
 		maxTemperature = maxtemp;
-		while(true){
-			System.out.println("preferredtemperature while loop");
-			new Temperature().checktemperature();
-			
+		
+	}
+	public void checktemperature(double currentTemperature){
+		System.out.println("currenttemperature"+currentTemp);
+		if(currentTemperature >maxTemperature){
+			System.out.println("setting on cooler");
+			cool.setCooleron(true);
+
+		}else if(currentTemperature < minTemperature){
+			System.out.println("setting on Heater");
+			hot.setHeaterOn(true);
+		}
+		heater = hot.getHeaterstatus();
+		cooler =cool.getCoolerStatus();
+		ChangeTemperature temp1 = new ChangeTemperature();
+		temp1.changetemp(heater, cooler, currentTemperature, minTemperature, maxTemperature);
+		if(!heater && !cooler){
+			currentTemperature++;
 		}
 	}
-	public void checktemperature(){
-		System.out.println("currenttemperature"+currenttemperature);
-		if(currenttemperature >maxTemperature){
-			System.out.println("setting on cooler");
-			CoolerOn.setCooleron(true);
 
-		}else if(currenttemperature < minTemperature){
-			System.out.println("setting on Heater");
-			Heater.setHeaterOn(true);
-		}
-		heater = Heater.getHeaterstatus();
-		cooler =CoolerOn.getCoolerStatus();
-		ChangeTemperature temp1 = new ChangeTemperature();
-		temp1.changetemp(heater, cooler, currenttemperature, minTemperature, maxTemperature);
-		if(!heater && !cooler){
-			currenttemperature++;
-		}
+
+	public void temprun() {
+		getTemperature();
+		checktemperature(currentTemp);
 	}
 	
 }

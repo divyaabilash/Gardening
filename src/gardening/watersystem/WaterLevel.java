@@ -1,36 +1,52 @@
 package gardening.watersystem;
 
-public class WaterLevel {
-static double currentwaterlevel,minWaterLevels;
+public class WaterLevel{
+ double currentwaterlevel,minWaterLevels,changedwaterlevel,maxwaterlevels;
+Sprinkler sprinkler = new Sprinkler();
 
-public static double getWaterLevel(){
-	currentwaterlevel = 0;
+public  void setWaterLevel(double currentwater){	
+	currentwaterlevel= currentwater;
+}
+
+public  double getWaterLevel(){
 	return currentwaterlevel;
 }
 
-public static void PerferredWaterLevel(double minWaterLevel){
-	WaterLevel.minWaterLevels=minWaterLevel;
-	while(true){
-		new WaterLevel().checkWaterLevel(minWaterLevels);
-	}
+public  void PerferredWaterLevel(double minWaterLevel,double maxwaterlevel){
+	minWaterLevels=minWaterLevel;
+	maxwaterlevels =maxwaterlevel; 
+//	while(true){
+//	}
 }
 
-private void checkWaterLevel(double minWaterLevels2) {
+public void checkWaterLevel() {
 	// TODO Auto-generated method stub
 	System.out.println("inside checkWaterLevel Method");
-	if(currentwaterlevel < minWaterLevels2){
+	if(currentwaterlevel < minWaterLevels){
 		System.out.println("Calling Sprinker on");
-		Sprinkler.setSprinkleron(true);		
+		sprinkler.setSprinkleron(true);		
 	}
-	new WaterLevel().changeWaterLevelofPlant();
+changeWaterLevelofPlant();
 }
 
 private void changeWaterLevelofPlant(){
 	boolean sprinkleron;
-	sprinkleron = Sprinkler.getSprinklerStatus();
+	sprinkleron = sprinkler.getSprinklerStatus();
 	if(sprinkleron){
-		new ChangeWaterLevel().toincreaseWaterLevel(currentwaterlevel,minWaterLevels);
+		ChangeWaterLevel changewaterlevel= new ChangeWaterLevel();
+		changedwaterlevel =changewaterlevel.toincreaseWaterLevel(currentwaterlevel,minWaterLevels);
+	}
+	if(changedwaterlevel == maxwaterlevels){
+		sprinkler.setSprinkeroff(false);
 	}
 }
+
+
+public void sprinkerrun() {
+		System.out.println("Water run");
+		checkWaterLevel();
+		
+}
+
 
 }
