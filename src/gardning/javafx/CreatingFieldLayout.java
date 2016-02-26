@@ -2,23 +2,23 @@ package gardning.javafx;
 
 
 import java.util.ArrayList;
-
-//import org.apache.log4j.Logger;
-
+import org.apache.log4j.Logger;
 import gardening.manual.ManualOverride;
 import gardening.plants.PlantList;
 import gardening.plants.Rose;
 import gardening.plants.Sunflower;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.*;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
+import javafx.stage.*;
 import javafx.stage.Stage;
 
 
@@ -32,8 +32,8 @@ public class CreatingFieldLayout{
 	static String i="";
 	static CheckBox manual;
 	static double manualtemperature,manualwaterlevel,manualfertilierlevel;
-	static Label plant;
-	//private static final Logger logger = Logger.getLogger(CreatingFieldLayout.class);
+	static Button plant;
+private static final Logger logger = Logger.getLogger("Creating Landing Page");
 	
 public static void create(int number){
 	
@@ -59,9 +59,9 @@ public static void create(int number){
 	tile1.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 		@Override
 		public void handle(MouseEvent event) {
-			// TODO Auto-generated method stub
-		vbox.setVisible(true);		
-//		logger.info("Manaual is selected");
+			logger.info("Farm land is Selected to farm");
+		vbox.setVisible(true);
+		logger.info("Plant Selection Panel is Displayed");
 		}		
 	});
 	}
@@ -73,25 +73,31 @@ public static void create(int number){
 	list = PlantList.list();
 	Label noOfFarm = new Label("List of Plants");
 	vbox.getChildren().add(noOfFarm);
-	int i=0;
-	while(i<list.size()){
-	 plant=new Label();
-		vbox.getChildren().add(plant);
-		plant.setText(list.get(i));
-		plant.setId(list.get(i));
-		plant.setPadding(new Insets(20));
-		plant.addEventFilter(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>(){
-			@Override
-			public void handle(MouseEvent event) {
-				++count;
+	
+	ListView<String> listing = new ListView<>();
+	ObservableList<String> selectedplant = FXCollections.observableArrayList(list);
+	listing.setItems(selectedplant);
+	listing.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+	listing.setOnMouseClicked(new EventHandler<Event>(){
+
+		@Override
+		public void handle(Event event) {
+			ObservableList<String> selection = listing.getSelectionModel().getSelectedItems();
+			for(String s:selection){
+				logger.info("The plant thats selected to farm is "+s);
+				vbox.setVisible(false);
+				logger.info("Hidding the plant selection panel");
 				newplant newplants = new newplant();
-				newplants.getElements(plant.getId(),count);
-				newplants.start();			
-			}		
-		});
-		System.out.println(list.get(i));
-		i++;
-	}
+			newplants.getElements(s);
+			newplants.start();
+			listing.setItems(null);
+			listing.setItems(selectedplant);
+			}
+		}
+		
+	});
+		
+	vbox.getChildren().add(listing);
 
 	manual = new CheckBox();
 	manual.setId("Manual");
@@ -100,7 +106,7 @@ public static void create(int number){
 		@Override
 		public void handle(MouseEvent event) {
 	displayfields();
-	//logger.info("Manaual checkbox is selected");
+	logger.info("Manaual checkbox is selected");
 	}		
 	});
 	
@@ -152,8 +158,7 @@ public static void create(int number){
 			System.out.println("manualtemperature" + manualtemperature);
 			System.out.println("manualwaterlevel" + manualwaterlevel);
 			System.out.println("manualfertilierlevel"+manualfertilierlevel);
-			new ManualOverride().setManualOverideOn(manual.isSelected(),manualtemperature,manualwaterlevel,manualfertilierlevel);
-			
+			new ManualOverride().setManualOverideOn(manual.isSelected(),manualtemperature,manualwaterlevel,manualfertilierlevel);			
 	}
 	});
 	Button reset = new Button("Reset");
@@ -161,12 +166,9 @@ public static void create(int number){
 	
 	buttons = new HBox(submit,reset);
 	buttons.setVisible(false);
-	
-	
+		
 	vboxleft=new VBox();
 	vboxleft.getChildren().addAll(manual,temperature,water,fertilizer,buttons);
-	
-
 	
 	BorderPane pane1 = new BorderPane();
 	pane1.setCenter(tile1);
@@ -177,36 +179,34 @@ public static void create(int number){
 	
 	Scene scene = new Scene(pane1);
 	stage.setScene(scene);
-//	stage.setFullScreen(true);
 	stage.showAndWait();
 }
 
 private static void displayfields() {
-	// TODO Auto-generated method stub
 	if(manual.isSelected()){
 		temperature.setVisible(true);
 		water.setVisible(true);
 		fertilizer.setVisible(true);
 		buttons.setVisible(true);
-		//logger.info("Manaual checkbox is selected");
+		logger.info("Manaual checkbox is selected");
 		}else{
 				temperature.setVisible(false);
 				water.setVisible(false);
 				fertilizer.setVisible(false);
 				buttons.setVisible(false);
-				//logger.info("Manaual checkbox is de-selected");
+				logger.info("Manaual checkbox is de-selected");
 		}
 }
  public boolean manualChecker(){
 	 
 	 if(manual.isSelected()){
 		 System.out.println("Manual checking" + manual.isSelected());
-		 //logger.info("ManaualGardening is  Started");
+		 logger.info("ManaualGardening is  Started");
 		 return true;
 		 
 	 }else{
 		 System.out.println("Manual checking" + manual.isSelected());
-		// logger.info("Manaual gardening is discard");
+		 logger.info("Manaual gardening is discard");
 	 return false;
 	 }
  }
@@ -214,17 +214,15 @@ private static void displayfields() {
 }
 
 class newplant extends Thread {
+	private static final Logger logger = Logger.getLogger("Seeding Plants on Farm Land");
 String plantid;
 int counts;
-	public void getElements(String string, int count){
+	public void getElements(String string){
 		plantid = string;
-		counts = count;
 	}
 	@Override
 	public void run() {
-				 System.out.println("New plant created");
-					System.out.println("Selected plant is "+plantid);
-					System.out.println("thread created"+counts);
+		logger.info("Seeded"+ plantid +" Plant is Created");
 					if(plantid =="Rose"){
 					Rose rose = new Rose();
 					rose.run();
@@ -235,7 +233,6 @@ int counts;
 	try {
 		Thread.sleep(10000);
 	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		
