@@ -1,9 +1,9 @@
 package gardening.manual;
 
-public class ManualOverride {
+public class ManualOverride{
 
- boolean manualoverideStatus;
- static double manualtemperatures,manualwater,manualfertilier;
+ public boolean manualoverideStatus;
+ public double manualtemperatures,manualwater,manualfertilier;
 	public  boolean getManualOverideStatus(){
 		return manualoverideStatus;
 	}
@@ -13,7 +13,7 @@ public class ManualOverride {
 		System.out.println("Manual Gardening is Off");
 	}
 
-	public  void setManualOverideOn(boolean b, double manualtemperature, double manualwaterlevel,
+	public void setManualOverideOn(boolean b, double manualtemperature, double manualwaterlevel,
 			double manualfertilierlevel) {
 		// TODO Auto-generated method stub
 		manualoverideStatus = b;
@@ -26,6 +26,14 @@ public class ManualOverride {
 	public double getmanualtemparetureOverideValue(){
 		return manualtemperatures;
 	}
+	public double getmanualfertilizerOverideValue(){
+		return manualfertilier;
+	}
+	public double getmanualwaterOverideValue(){
+		return manualwater;
+	}
+	
+
 
 
 }

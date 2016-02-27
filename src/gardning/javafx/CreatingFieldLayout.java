@@ -15,7 +15,6 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.*;
@@ -92,6 +91,7 @@ public static void create(int number){
 			newplants.start();
 			listing.setItems(null);
 			listing.setItems(selectedplant);
+			
 			}
 		}
 		
@@ -158,7 +158,8 @@ public static void create(int number){
 			System.out.println("manualtemperature" + manualtemperature);
 			System.out.println("manualwaterlevel" + manualwaterlevel);
 			System.out.println("manualfertilierlevel"+manualfertilierlevel);
-			new ManualOverride().setManualOverideOn(manual.isSelected(),manualtemperature,manualwaterlevel,manualfertilierlevel);			
+			ManualOverride m = new ManualOverride();
+			m.setManualOverideOn(true,manualtemperature,manualwaterlevel,manualfertilierlevel);			
 	}
 	});
 	Button reset = new Button("Reset");
@@ -176,7 +177,7 @@ public static void create(int number){
 	pane1.setLeft(vboxleft);
 	vbox.setVisible(false);
 	vbox.setMaxSize(400, 400);
-	
+
 	Scene scene = new Scene(pane1);
 	stage.setScene(scene);
 	stage.showAndWait();
@@ -188,6 +189,7 @@ private static void displayfields() {
 		water.setVisible(true);
 		fertilizer.setVisible(true);
 		buttons.setVisible(true);
+		manualChecker();
 		logger.info("Manaual checkbox is selected");
 		}else{
 				temperature.setVisible(false);
@@ -197,16 +199,17 @@ private static void displayfields() {
 				logger.info("Manaual checkbox is de-selected");
 		}
 }
- public boolean manualChecker(){
-	 
+ public static boolean manualChecker(){
 	 if(manual.isSelected()){
 		 System.out.println("Manual checking" + manual.isSelected());
 		 logger.info("ManaualGardening is  Started");
+
 		 return true;
 		 
 	 }else{
 		 System.out.println("Manual checking" + manual.isSelected());
 		 logger.info("Manaual gardening is discard");
+
 	 return false;
 	 }
  }
@@ -225,6 +228,7 @@ int counts;
 		logger.info("Seeded"+ plantid +" Plant is Created");
 					if(plantid =="Rose"){
 					Rose rose = new Rose();
+					rose.prefferedvalues();
 					rose.run();
 					}else if (plantid =="Sunflower" ){
 						Sunflower sun = new Sunflower();

@@ -15,11 +15,6 @@ public ArrayList<Integer> sensor(){
 		sensor.add(54);
 		sensor.add(42);
 		sensor.add(30);
-		
-		
-		
-		
-		
 		return sensor;
 	}
 

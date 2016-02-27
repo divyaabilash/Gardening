@@ -2,7 +2,7 @@ package gardning.heatingsystem;
 
 import java.util.ArrayList;
 
-import gardening.manual.ManualOverride;
+import org.apache.log4j.Logger;
 import gardening.sensors.TemperatureSensor;
 import gardning.javafx.CreatingFieldLayout;
 
@@ -14,22 +14,21 @@ boolean cooler,heater;
  double manualTemp;
  double currentTemp;
  boolean check=true;
-
+ private static final Logger logger = Logger.getLogger("Temperature class");
  CoolerOn cool = new CoolerOn();
  Heater hot= new Heater();
-CreatingFieldLayout cfl =new CreatingFieldLayout();	
+CreatingFieldLayout cfl =new CreatingFieldLayout();
+
+public void setmanualtemp(double manual){
+	manual=manualTemp;
+}
 	
 	public  double getTemperature(){
 			
 		TemperatureSensor tempSensor=new TemperatureSensor();
 		ArrayList<Integer> intlist = new ArrayList<Integer>();
 		
-		intlist=tempSensor.sensor();
-
-		check= cfl.manualChecker();
-		ManualOverride manual=new ManualOverride();
-		manualTemp=manual.getmanualtemparetureOverideValue();
-		
+		intlist=tempSensor.sensor();		
 		System.out.println("Inside get temperature");
 		if(!check){
 			System.out.println("Inside check option");
@@ -62,11 +61,11 @@ CreatingFieldLayout cfl =new CreatingFieldLayout();
 	public void checktemperature(double currentTemperature){
 		System.out.println("currenttemperature"+currentTemp);
 		if(currentTemperature >maxTemperature){
-			System.out.println("setting on cooler");
+			logger.info("setting on cooler");
 			cool.setCooleron(true);
 
 		}else if(currentTemperature < minTemperature){
-			System.out.println("setting on Heater");
+			logger.info("setting on Heater");
 			hot.setHeaterOn(true);
 		}
 		heater = hot.getHeaterstatus();
@@ -82,6 +81,7 @@ CreatingFieldLayout cfl =new CreatingFieldLayout();
 	public void temprun() {
 		getTemperature();
 		checktemperature(currentTemp);
+		logger.info("Checking Current Temperature");
 	}
 	
 }

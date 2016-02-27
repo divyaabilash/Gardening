@@ -1,11 +1,15 @@
 package gardening.watersystem;
 
+import org.apache.log4j.Logger;
+
 public class WaterLevel{
  double currentwaterlevel,minWaterLevels,changedwaterlevel,maxwaterlevels;
+ private static final Logger logger = Logger.getLogger("Sprinkler Watering class");
 Sprinkler sprinkler = new Sprinkler();
 
 public  void setWaterLevel(double currentwater){	
 	currentwaterlevel= currentwater;
+	logger.info("The Current Water Lvele is"+currentwaterlevel);
 }
 
 public  double getWaterLevel(){
@@ -15,15 +19,12 @@ public  double getWaterLevel(){
 public  void PerferredWaterLevel(double minWaterLevel,double maxwaterlevel){
 	minWaterLevels=minWaterLevel;
 	maxwaterlevels =maxwaterlevel; 
-//	while(true){
-//	}
 }
 
 public void checkWaterLevel() {
-	// TODO Auto-generated method stub
-	System.out.println("inside checkWaterLevel Method");
+logger.info("inside checkWaterLevel Method");
 	if(currentwaterlevel < minWaterLevels){
-		System.out.println("Calling Sprinker on");
+		logger.info("Calling Sprinker to on");
 		sprinkler.setSprinkleron(true);		
 	}
 changeWaterLevelofPlant();
@@ -38,12 +39,13 @@ private void changeWaterLevelofPlant(){
 	}
 	if(changedwaterlevel == maxwaterlevels){
 		sprinkler.setSprinkeroff(false);
+		logger.info("Calling Sprinker to off");
 	}
 }
 
 
 public void sprinkerrun() {
-		System.out.println("Water run");
+		logger.info("Checking the Water Level");
 		checkWaterLevel();
 		
 }
