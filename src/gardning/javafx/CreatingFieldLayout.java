@@ -32,8 +32,9 @@ public class CreatingFieldLayout{
 	static CheckBox manual;
 	static double manualtemperature,manualwaterlevel,manualfertilierlevel;
 	static Button plant;
+
 private static final Logger logger = Logger.getLogger("Creating Landing Page");
-	
+public static ManualOverride m = new ManualOverride();
 public static void create(int number){
 	
 	Stage stage=new Stage();
@@ -158,7 +159,7 @@ public static void create(int number){
 			System.out.println("manualtemperature" + manualtemperature);
 			System.out.println("manualwaterlevel" + manualwaterlevel);
 			System.out.println("manualfertilierlevel"+manualfertilierlevel);
-			ManualOverride m = new ManualOverride();
+			
 			m.setManualOverideOn(true,manualtemperature,manualwaterlevel,manualfertilierlevel);			
 	}
 	});
@@ -218,7 +219,8 @@ private static void displayfields() {
 
 class newplant extends Thread {
 	private static final Logger logger = Logger.getLogger("Seeding Plants on Farm Land");
-String plantid;
+	
+	String plantid;
 int counts;
 	public void getElements(String string){
 		plantid = string;
@@ -227,7 +229,9 @@ int counts;
 	public void run() {
 		logger.info("Seeded"+ plantid +" Plant is Created");
 					if(plantid =="Rose"){
-					Rose rose = new Rose();
+					Rose rose = new Rose();					
+						rose.prefferedvalues();
+
 					rose.prefferedvalues();
 					rose.run();
 					}else if (plantid =="Sunflower" ){
