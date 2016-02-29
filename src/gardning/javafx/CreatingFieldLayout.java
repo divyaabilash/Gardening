@@ -159,12 +159,17 @@ public static void create(int number){
 			System.out.println("manualtemperature" + manualtemperature);
 			System.out.println("manualwaterlevel" + manualwaterlevel);
 			System.out.println("manualfertilierlevel"+manualfertilierlevel);
-			
-			m.setManualOverideOn(true,manualtemperature,manualwaterlevel,manualfertilierlevel);			
+			m.setManualOverideOn();		
 	}
 	});
 	Button reset = new Button("Reset");
 	reset.setPadding(new Insets(40));
+	reset.addEventFilter(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>(){
+		@Override
+		public void handle(MouseEvent event) {
+			m.stop();
+		}	
+	});
 	
 	buttons = new HBox(submit,reset);
 	buttons.setVisible(false);
@@ -204,7 +209,6 @@ private static void displayfields() {
 	 if(manual.isSelected()){
 		 System.out.println("Manual checking" + manual.isSelected());
 		 logger.info("ManaualGardening is  Started");
-
 		 return true;
 		 
 	 }else{

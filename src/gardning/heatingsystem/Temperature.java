@@ -44,8 +44,7 @@ public void setmanualtemp(double manual){
 			}
 			
 		}else{
-			currentTemp=manualTemp;
-				System.out.println("Manual TEmperature" + currentTemp );					
+			currentTemp=manualTemp;				
 		}
 		return currentTemp;
 		
