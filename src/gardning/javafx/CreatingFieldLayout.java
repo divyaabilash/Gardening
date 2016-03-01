@@ -3,14 +3,10 @@ package gardning.javafx;
 
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
-
-import gardening.Pest;
 import gardening.manual.ManualOverride;
 import gardening.plants.PlantList;
 import gardening.plants.Rose;
 import gardening.plants.Sunflower;
-import gardening.watersystem.WaterLevel;
-import gardning.heatingsystem.Temperature;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -160,8 +156,8 @@ public static void create(int number){
 			manualtemperature = Double.parseDouble(manualtemptext.getText());
 			manualwaterlevel = Double.parseDouble(manualwatertext.getText());
 			manualfertilierlevel = Double.parseDouble(manualfertilizertext.getText());
-			System.out.println("manualtemperature" + manualtemperature);
-			System.out.println("manualwaterlevel" + manualwaterlevel);
+//			System.out.println("manualtemperature" + manualtemperature);
+//			System.out.println("manualwaterlevel" + manualwaterlevel);
 //			System.out.println("manualfertilierlevel"+manualfertilierlevel);
 	        m.setManualOveridevalue(true,manualtemperature, manualwaterlevel, manualfertilierlevel);
 	        m.setManualOverideOn();		

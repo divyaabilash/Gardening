@@ -10,8 +10,8 @@ public class ManualOverride implements Runnable{
 
  public boolean manualoverideStatus;
  public double manualtemperatures,manualwater,manualfertilier;
-WaterLevel w = new WaterLevel();
-Temperature t = new Temperature();
+ WaterLevel w = new WaterLevel();
+ Temperature t = new Temperature();
  private static final Logger logger = Logger.getLogger("Manual Class");
 	public  boolean getManualOverideStatus(){
 		return manualoverideStatus;
@@ -23,7 +23,7 @@ Temperature t = new Temperature();
 	}
 
 	public void setManualOverideOn(){
-		manualoverideStatus = true;
+//		manualoverideStatus = true;
 		logger.info("Manual Gardening Started");
 //		setManualOveridevalue();
 		run();
@@ -42,6 +42,7 @@ Temperature t = new Temperature();
 		WaterLevel.currentwaterlevel=manualwaterlevel;
 		Pest.PesticideLevel = manualfertilierlevel;
 		System.out.println("Manual Gardening is On ");
+		logger.info("Manual Gardening Started");
 	}
 	
 	public double getmanualtemparetureOverideValue(){
@@ -61,6 +62,7 @@ Temperature t = new Temperature();
 			w.setWaterLevel(manualwater);
 			t.setmanualtemp(manualtemperatures);
 		}else{
+			logger.info("Setting of the Manual Gardening");
 			manualoverideStatus=false;
 		}
 		try {
