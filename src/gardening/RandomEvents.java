@@ -1,5 +1,7 @@
 package gardening;
 
+import java.util.Random;
+
 import org.apache.log4j.Logger;
 
 import gardening.watersystem.WaterLevel;
@@ -38,16 +40,17 @@ public class RandomEvents implements Runnable {
 	}
 	
 	public void generateevent() throws InterruptedException{
-		int i=0;
-if(i%2==0){
+		Random ran = new Random();
+		int x = ran.nextInt(6);
+if(x%2==0){
 	coldday();
-}else if(i%3==0){
+}else if(x%3==0){
 	raining();
-}else if(i%5==0){
+}else if(x%5==0){
 	hotday();
 }else{
 	Thread.sleep(100);
 }
-i++;	
+	
 }
 }

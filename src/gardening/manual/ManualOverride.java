@@ -1,5 +1,7 @@
 package gardening.manual;
 
+import org.apache.log4j.Logger;
+
 import gardening.watersystem.WaterLevel;
 import gardning.heatingsystem.Temperature;
 
@@ -7,9 +9,10 @@ public class ManualOverride implements Runnable{
 
  public boolean manualoverideStatus;
  public double manualtemperatures,manualwater,manualfertilier;
+
+ private static final Logger logger = Logger.getLogger("Manual Class");
  WaterLevel w = new WaterLevel();
  Temperature t = new Temperature();
-	Thread th=new Thread();
 	public  boolean getManualOverideStatus(){
 		return manualoverideStatus;
 	}
@@ -21,7 +24,7 @@ public class ManualOverride implements Runnable{
 
 	public void setManualOverideOn(){
 		manualoverideStatus = true;
-		th.run();
+		run();
 	}
 //	public void setManualOverideOn(boolean b, double manualtemperature, double manualwaterlevel,
 //			double manualfertilierlevel) {
@@ -46,10 +49,9 @@ public class ManualOverride implements Runnable{
 	@Override
 	public void run() {
 		if(manualoverideStatus){
+			logger.info("Manual Gardeing");
 			w.setWaterLevel(manualwater);
 			t.setmanualtemp(manualtemperatures);
-		}else{
-			stop();
 		}
 		try {
 			Thread.sleep(100);	
@@ -57,12 +59,4 @@ public class ManualOverride implements Runnable{
 			e.printStackTrace();
 		}
 	}
-	
-	public void stop(){
-		th.interrupt();
-	}
-	
-
-
-
 }
