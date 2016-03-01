@@ -12,6 +12,7 @@ public class RandomEvents implements Runnable {
 	Temperature temp = new Temperature();
 //	Sprinkler s = new Sprinkler();
 	WaterLevel w =new WaterLevel();
+	Pest p = new Pest();
 	@Override
 
 	public void run() {
@@ -25,18 +26,26 @@ public class RandomEvents implements Runnable {
 	}
 
 	public void coldday(){
-		temp.checktemperature(0);
 		logger.info("ITs Really Cold day");
+		temp.setmanualtemp(0);
+		
 	}
 	
 	public void hotday(){
-		temp.checktemperature(100);
 		logger.info("Its really Hot Day");
+		temp.setmanualtemp(100);
+	
 	}
 	
 	public void raining(){
-		w.setWaterLevel(100);
 		logger.info("Its Raining day");
+		w.setWaterLevel(100);
+
+	}
+	public void pesticide(){
+		logger.info("Pests Have Attacked Plant");
+		p.setPesticidelevel(0);
+		
 	}
 	
 	public void generateevent() throws InterruptedException{
@@ -49,7 +58,7 @@ if(x%2==0){
 }else if(x%5==0){
 	hotday();
 }else{
-	Thread.sleep(100);
+	pesticide();
 }
 	
 }

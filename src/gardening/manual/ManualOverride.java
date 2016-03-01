@@ -24,6 +24,7 @@ public class ManualOverride implements Runnable{
 
 	public void setManualOverideOn(){
 		manualoverideStatus = true;
+		logger.info("Manual Gardening Satrted");
 		run();
 	}
 //	public void setManualOverideOn(boolean b, double manualtemperature, double manualwaterlevel,
@@ -52,6 +53,8 @@ public class ManualOverride implements Runnable{
 			logger.info("Manual Gardeing");
 			w.setWaterLevel(manualwater);
 			t.setmanualtemp(manualtemperatures);
+		}else{
+			manualoverideStatus=false;
 		}
 		try {
 			Thread.sleep(100);	

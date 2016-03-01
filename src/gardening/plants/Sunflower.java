@@ -3,40 +3,45 @@ package gardening.plants;
 import org.apache.log4j.Logger;
 
 import gardening.Pest;
+import gardening.RandomEvents;
 import gardening.fertility.Fertilizer;
-import gardening.general.CommonEntity;
+import gardening.manual.ManualOverride;
 import gardening.watersystem.Humdity;
 import gardening.watersystem.WaterLevel;
 import gardning.heatingsystem.Temperature;
 public class Sunflower  extends FlowerPlants implements Plant,Runnable{
-
+	RandomEvents r = new RandomEvents();
 	WaterLevel water = new WaterLevel();
 	Temperature temp = new Temperature();
 	Humdity h = new Humdity();
 	Pest p = new Pest();
-	Thread sunthread = new Thread();
+	Thread Rosethread = new Thread();
 	Fertilizer f = new Fertilizer();
+	ManualOverride m = new ManualOverride();
 	int count =0,lengthofPlant=0;
 	double initallength=0;
 	int plantgrowth =100;
-	 private static final Logger logger = Logger.getLogger("Rose Plant");
+	int d =0;
+	 private static final Logger logger = Logger.getLogger("Sunflower Plant");
 	public void prefferedvalues(){
-		CommonEntity en = new CommonEntity();
-		en.setcommon();
-		double waterset = en.CurrentWater;
-		double fertilizer =en.CurrentFertility;
-		double manualtemperatures = en.CurrentTemp;
-		logger.info("Setting Favourable climate paramters");
-	temp.perferredTemperature(65, 90);
-	water.PerferredWaterLevel(67, 89);
-	f.setminmax(45, 100);
+double waterset = 10;
+double fertilizer = 30;
+double manualtemperatures = 60;
+if(m.getManualOverideStatus()){
+	waterset=m.getmanualwaterOverideValue();
+	fertilizer=m.getmanualfertilizerOverideValue();
+	manualtemperatures=m.getmanualtemparetureOverideValue();
+}
+	temp.perferredTemperature(35, 90);
+	water.PerferredWaterLevel(20, 100);
+	f.setminmax(30, 100);
 	water.setWaterLevel(waterset);	
 	f.setFertlizerlevel(fertilizer);
 	temp.setmanualtemp(manualtemperatures);
 	h.setminmax(25);
-	h.sethumditlevel(0);
-	p.setminmax(65, 85);
-	p.setPesticidelevel(2);
+	h.sethumditlevel(6);
+	p.setminmax(45, 75);
+	p.setPesticidelevel(23);
 	}
 
 	@Override
@@ -51,7 +56,7 @@ public class Sunflower  extends FlowerPlants implements Plant,Runnable{
 
 	@Override
 	public void lifeSpan() {
-		initallength = initallength+(.005);
+		initallength = initallength+(.002);
 	}
 
 	@Override
@@ -72,7 +77,7 @@ public class Sunflower  extends FlowerPlants implements Plant,Runnable{
 	@Override
 	public void run() {
 
-		while (!sunthread.isInterrupted()){
+		while (!Rosethread.isInterrupted()){
 			System.out.println("Thread Started"+count);
 			watering();
 			humdity();
@@ -82,7 +87,11 @@ public class Sunflower  extends FlowerPlants implements Plant,Runnable{
 			try {
 				//sleeping for 10minute of the day 
 				Thread.sleep(333/100);
-				
+				d ++;
+				if(d%4 ==0){
+				logger.info("Calling Randon Events");
+				r.run();
+				}
 				System.out.println("Thread Sleeping");
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -90,15 +99,15 @@ public class Sunflower  extends FlowerPlants implements Plant,Runnable{
 			}
 			if(initallength != plantgrowth ){
 				lifeSpan();
-				logger.info("Rose plant is Growing");
+				logger.info("Sunflower plant is Growing");
 			}else{
-				logger.info("Come to see the sunflower Thats Blossomed");
+				logger.info("Come to see Sunflower Flowers Thats Blossomed");
 				try {
-					Thread.sleep(160000);
+					Thread.sleep(40000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				logger.info("You missed the Flowers ,clear  the fields");
+				logger.info("You missed the Flowers and cut the plant to regrow");
 			}
 	
 		}

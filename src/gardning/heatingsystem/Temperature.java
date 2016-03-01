@@ -20,7 +20,7 @@ boolean cooler,heater;
 CreatingFieldLayout cfl =new CreatingFieldLayout();
 
 public void setmanualtemp(double manual){
-	manual=manualTemp;
+	currentTemp=manual;
 }
 	
 	public  double getTemperature(){

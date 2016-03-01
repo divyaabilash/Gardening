@@ -88,7 +88,7 @@ if(m.getManualOverideStatus()){
 				//sleeping for 10minute of the day 
 				Thread.sleep(333/100);
 				d ++;
-				if(d%10 ==0){
+				if(d%3 ==0){
 				logger.info("Calling Randon Events");
 				r.run();
 				}

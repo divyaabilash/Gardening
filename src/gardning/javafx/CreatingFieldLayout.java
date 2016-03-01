@@ -164,6 +164,12 @@ public static void create(int number){
 	});
 	Button reset = new Button("Reset");
 	reset.setPadding(new Insets(40));
+	reset.addEventFilter(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>(){
+		@Override
+		public void handle(MouseEvent event) {
+			m.setManualOverideoff(false);		
+	}
+	});
 	
 	buttons = new HBox(submit,reset);
 	buttons.setVisible(false);
