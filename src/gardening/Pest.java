@@ -6,7 +6,9 @@ import gardening.manual.ManualOverride;
 
 public class Pest {
 	private static final Logger logger = Logger.getLogger("Pesticide class");
-	double PesticideLevel,minlevel,maxlevel;
+	public static double PesticideLevel;
+	static double minlevel;
+	static double maxlevel;
 	boolean pesticideOn;
 	ManualOverride manual = new ManualOverride();
 	public double getPesticideLevel(){

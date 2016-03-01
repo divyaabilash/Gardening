@@ -15,7 +15,7 @@ public class Sunflower  extends FlowerPlants implements Plant,Runnable{
 	Temperature temp = new Temperature();
 	Humdity h = new Humdity();
 	Pest p = new Pest();
-	Thread Rosethread = new Thread();
+	Thread Sunflowerthread = new Thread("Sunflowerthread");
 	Fertilizer f = new Fertilizer();
 	ManualOverride m = new ManualOverride();
 	int count =0,lengthofPlant=0;
@@ -24,14 +24,9 @@ public class Sunflower  extends FlowerPlants implements Plant,Runnable{
 	int d =0;
 	 private static final Logger logger = Logger.getLogger("Sunflower Plant");
 	public void prefferedvalues(){
-double waterset = 10;
-double fertilizer = 30;
-double manualtemperatures = 60;
-if(m.getManualOverideStatus()){
-	waterset=m.getmanualwaterOverideValue();
-	fertilizer=m.getmanualfertilizerOverideValue();
-	manualtemperatures=m.getmanualtemparetureOverideValue();
-}
+		double waterset = 10;
+		double fertilizer = 30;
+		double manualtemperatures = 60;
 	temp.perferredTemperature(35, 90);
 	water.PerferredWaterLevel(20, 100);
 	f.setminmax(30, 100);
@@ -77,7 +72,7 @@ if(m.getManualOverideStatus()){
 	@Override
 	public void run() {
 
-		while (!Rosethread.isInterrupted()){
+		while (!Sunflowerthread.isInterrupted()){
 			System.out.println("Thread Started"+count);
 			watering();
 			humdity();

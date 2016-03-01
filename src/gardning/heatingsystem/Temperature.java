@@ -8,11 +8,11 @@ import gardning.javafx.CreatingFieldLayout;
 
 public class Temperature {
 	
-  double sensorTemp;
- double minTemperature, maxTemperature;
-boolean cooler,heater;
- double manualTemp;
- double currentTemp;
+public static  double sensorTemp;
+public static double minTemperature, maxTemperature;
+public static boolean cooler,heater;
+public static double manualTemp;
+public static double currentTemp;
  boolean check=true;
  private static final Logger logger = Logger.getLogger("Temperature class");
  CoolerOn cool = new CoolerOn();
@@ -57,6 +57,7 @@ public void setmanualtemp(double manual){
 		maxTemperature = maxtemp;
 		
 	}
+	
 	public void checktemperature(double currentTemperature){
 		System.out.println("currenttemperature"+currentTemp);
 		if(currentTemperature >maxTemperature){

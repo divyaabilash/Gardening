@@ -9,10 +9,10 @@ import gardning.heatingsystem.Temperature;
 
 public class RandomEvents implements Runnable {
 	private static final Logger logger = Logger.getLogger("Random class");
-	Temperature temp = new Temperature();
-//	Sprinkler s = new Sprinkler();
-	WaterLevel w =new WaterLevel();
-	Pest p = new Pest();
+//	Temperature temp = new Temperature();
+////	Sprinkler s = new Sprinkler();
+//	WaterLevel w =new WaterLevel();
+//	Pest p = new Pest();
 	@Override
 
 	public void run() {
@@ -20,31 +20,31 @@ public class RandomEvents implements Runnable {
 		try {
 			generateevent();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public void coldday(){
 		logger.info("ITs Really Cold day");
-		temp.setmanualtemp(0);
+		Temperature.currentTemp = 0;
+//		temp.setmanualtemp(0);
 		
 	}
 	
 	public void hotday(){
 		logger.info("Its really Hot Day");
-		temp.setmanualtemp(100);
+		Temperature.currentTemp=100;
+//		temp.setmanualtemp(100);
 	
 	}
 	
 	public void raining(){
 		logger.info("Its Raining day");
-		w.setWaterLevel(100);
-
+		WaterLevel.currentwaterlevel=100;
 	}
 	public void pesticide(){
 		logger.info("Pests Have Attacked Plant");
-		p.setPesticidelevel(0);
+		Pest.PesticideLevel=0;
 		
 	}
 	

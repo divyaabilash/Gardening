@@ -31,6 +31,7 @@ if(m.getManualOverideStatus()){
 	waterset=m.getmanualwaterOverideValue();
 	fertilizer=m.getmanualfertilizerOverideValue();
 	manualtemperatures=m.getmanualtemparetureOverideValue();
+	m.setManualOveridevalue(true, manualtemperatures, manualtemperatures, manualtemperatures);
 }
 	temp.perferredTemperature(45, 70);
 	water.PerferredWaterLevel(34, 89);

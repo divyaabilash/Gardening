@@ -8,7 +8,7 @@ import gardening.manual.ManualOverride;
 public class Fertilizer{
 
 private static final Logger logger = Logger.getLogger("Fertilizer class");
-double fertilizerLevel,minlevel,maxlevel;
+public static double fertilizerLevel,minlevel,maxlevel;
 boolean fertilizerOn;
 ManualOverride manual = new ManualOverride();
 public double getFertilzerLevel(){
